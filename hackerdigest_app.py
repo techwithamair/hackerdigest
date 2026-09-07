@@ -1,5 +1,6 @@
 import html
 import time
+import textwrap
 from urllib.parse import urlparse
 
 import streamlit as st
@@ -69,7 +70,7 @@ RESULT_OPTIONS = [10, 20, 30]
 # --------------------------------------------------
 
 st.markdown(
-    """
+    textwrap.dedent("""
     <style>
         :root {
             --orange: #ff6600;
@@ -334,7 +335,7 @@ st.markdown(
             }
         }
     </style>
-    """,
+    """),
     unsafe_allow_html=True,
 )
 
@@ -418,7 +419,7 @@ def show_story_card(story, interests, rank):
         tags_html = '<span class="tag">trending</span>'
 
     st.markdown(
-        f"""
+        textwrap.dedent(f"""
         <div class="story-card">
             <div class="rank-number">
                 {rank}
@@ -464,7 +465,7 @@ def show_story_card(story, interests, rank):
                 </div>
             </div>
         </div>
-        """,
+        """),
         unsafe_allow_html=True,
     )
 
@@ -486,7 +487,7 @@ if "keywords" not in st.session_state:
 
 with st.sidebar:
     st.markdown(
-        """
+        textwrap.dedent("""
         <div class="brand">
             <div class="brand-icon">H</div>
             <div class="brand-name">
@@ -497,7 +498,7 @@ with st.sidebar:
         <div class="brand-subtitle">
             Personalised Hacker News Feed
         </div>
-        """,
+        """),
         unsafe_allow_html=True,
     )
 
@@ -526,12 +527,12 @@ with st.sidebar:
     )
 
     st.markdown(
-        """
+        textwrap.dedent("""
         <div class="side-note">
             If entered, custom search terms override the preset
             keywords for ranking.
         </div>
-        """,
+        """),
         unsafe_allow_html=True,
     )
 
@@ -548,11 +549,11 @@ with st.sidebar:
     )
 
     st.markdown(
-        """
+        textwrap.dedent("""
         <div class="side-note">
             Add or edit interests as comma-separated keywords.
         </div>
-        """,
+        """),
         unsafe_allow_html=True,
     )
 
@@ -590,12 +591,12 @@ with st.sidebar:
         fetch_feed.clear()
 
     st.markdown(
-        """
+        textwrap.dedent("""
         <div class="side-note" style="margin-top: 16px;">
             Data from Hacker News Firebase API<br>
             Built with Python + Streamlit
         </div>
-        """,
+        """),
         unsafe_allow_html=True,
     )
 
@@ -605,7 +606,7 @@ with st.sidebar:
 # --------------------------------------------------
 
 st.markdown(
-    """
+    textwrap.dedent("""
     <div class="hero">
         <div class="hero-title">
             📰 Hacker<span>Digest</span>
@@ -619,7 +620,7 @@ st.markdown(
 
         <div class="orange-line"></div>
     </div>
-    """,
+    """),
     unsafe_allow_html=True,
 )
 
@@ -722,7 +723,7 @@ safe_active_source = html.escape(active_source)
 safe_category = html.escape(category)
 
 st.markdown(
-    f"""
+    textwrap.dedent(f"""
     <div class="feed-title">
         Ranked Stories
     </div>
@@ -731,7 +732,7 @@ st.markdown(
         Using {safe_active_source}
         · Category: {safe_category}
     </div>
-    """,
+    """),
     unsafe_allow_html=True,
 )
 
@@ -755,13 +756,13 @@ else:
 
 
 st.markdown(
-    """
+    textwrap.dedent("""
     <div class="footer-note">
         Scores combine relevance to your interests (70%)
         and trending score (30%). Relevance uses literal
         keyword matches in story titles. This is a transparent
         ranking heuristic, not machine learning.
     </div>
-    """,
+    """),
     unsafe_allow_html=True,
 )
