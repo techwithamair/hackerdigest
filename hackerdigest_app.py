@@ -668,27 +668,30 @@ visible_stories = ranked_stories[:results_to_show]
 
 total_relevance = 0
 
-for story in stories:
+for story in visible_stories:
     total_relevance += relevance_score(
         story,
         interests,
     )
 
-average_relevance = round(
-    total_relevance / len(stories)
-)
+if visible_stories:
+    average_relevance = round(
+        total_relevance / len(visible_stories)
+    )
+else:
+    average_relevance = 0
 
 total_comments = 0
 
-for story in stories:
+for story in visible_stories:
     total_comments += story.comments
 
 
 metric1, metric2, metric3, metric4 = st.columns(4)
 
 metric1.metric(
-    "Stories Found",
-    len(stories),
+    "Stories Shown",
+    len(visible_stories),
 )
 
 metric2.metric(
